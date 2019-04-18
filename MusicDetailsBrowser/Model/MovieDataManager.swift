@@ -9,8 +9,8 @@
 import Foundation
 import UIKit
 
-let MOVIES_LIST_URL:String = "https://mcertain.github.io/web/MusicDetailsBrowser/movies"
-let MOVIE_DETAILS_URL:String = "https://mcertain.github.io/web/MusicDetailsBrowser/moviedata"
+let MUSIC_LIST_URL:String = "https://mcertain.github.io/web/MusicDetailsBrowser/music"
+let MUSIC_DETAILS_URL:String = "https://mcertain.github.io/web/MusicDetailsBrowser/musicdata"
 
 struct MovieItem : Decodable, Equatable {
     let title: String

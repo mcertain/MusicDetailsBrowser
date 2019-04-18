@@ -83,7 +83,7 @@ class MovieDetailsController : UIViewController, UINavigationControllerDelegate 
     
     func requestMovieDetails() {
         let pMovieDataManager = MovieDataManager.GetInstance()
-        let remoteLocation = URL(string: MOVIE_DETAILS_URL + "/" + movieID!)
+        let remoteLocation = URL(string: MUSIC_DETAILS_URL + "/" + movieID!)
         
         // Just incase it takes a while to get a response, busy the view so the user knows something
         // is happening

@@ -34,7 +34,7 @@ class AvailableMoviesController: UITableViewController {
     func fetchMovieData() {
         // When the Movie Data Manager is empty, then query the movie list from the cloud
         if(MovieDataManager.GetInstance()?.getMovieCount() == 0) {
-            let remoteLocation = URL(string: MOVIES_LIST_URL)
+            let remoteLocation = URL(string: MUSIC_LIST_URL)
             let task = URLSession.shared.dataTask(with: remoteLocation!) {(data, response, error) in
                 guard error == nil else {
                     print("URL Request returned with error.")
