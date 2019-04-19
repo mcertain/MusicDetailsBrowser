@@ -170,12 +170,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MusicDetailsBrowser/Controllers/MusicDetailsController.swift"
-            timestampString = "577336989.772581"
+            timestampString = "577377374.642786"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
-            landmarkName = "setupView(withDetails:)"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "requestMusicDetails()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -186,12 +186,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MusicDetailsBrowser/Utilities/EndpointRequestor.swift"
-            timestampString = "577336989.772639"
+            timestampString = "577377374.6432"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
-            landmarkName = "requestEndpointData(endpoint:withUIViewController:errorHandler:successHandler:busyTheView:withArgument:)"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "playMusicTrack(withEndpoint:usingMusicID:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -9,15 +9,49 @@
 import Foundation
 import UIKit
 
-enum Endpoints: Int {
+enum MusicDataEndpoint: Int {
     case MUSIC_LISTING
     case MUSIC_DETAILS
     case COVER_IMAGE_THUMBNAIL
 }
 
+enum PlayTrackEndpoint: Int {
+    case PLAY_SPOTIFY_TRACK
+    case PLAY_APPLE_MUSIC_TRACK
+}
+
 class EndpointRequestor {
     
-    static func requestEndpointData(endpoint: Endpoints,
+    static func playMusicTrack(withEndpoint: PlayTrackEndpoint,
+                               usingMusicID: String?) {
+        
+        guard usingMusicID != nil else {
+            return
+        }
+        
+        guard let cacheEntry = MusicDetailsController.GetMusicDetailsCache().get(value: usingMusicID!) else {
+            return
+        }
+        guard let musicDetails = cacheEntry.getObjectData() as! MusicDetails? else {
+            return
+        }
+        
+        var trackLocation: URL?
+        switch withEndpoint {
+        case .PLAY_SPOTIFY_TRACK:
+            trackLocation = URL(string: SPOTIFY_URL_PREFIX + musicDetails.spotifyTrackID)
+        case .PLAY_APPLE_MUSIC_TRACK:
+            trackLocation = URL(string: APPLEMUSIC_URL_PREFIX + musicDetails.AppleMusicID)
+        }
+        
+        guard trackLocation != nil else {
+            return
+        }
+        
+        UIApplication.shared.open(trackLocation!, options: [:])
+    }
+    
+    static func requestEndpointData(endpoint: MusicDataEndpoint,
                                     withUIViewController: UIViewController,
                                     errorHandler: (() -> Void)?,
                                     successHandler: ((_ receivedData: Data?) -> Void)?,

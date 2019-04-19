@@ -19,33 +19,19 @@ class MusicDetailsController : UIViewController, UINavigationControllerDelegate 
     @IBOutlet var spotifyButton: UIButton!
     
     fileprivate static var musicDetailsCache: LRUCache = LRUCache(sizeLimit: 5)
+    static func GetMusicDetailsCache() -> LRUCache {
+        return musicDetailsCache
+    }
     
     @IBAction func appleMusicButtonAction(_ sender: Any) {
-        guard let cacheEntry = MusicDetailsController.musicDetailsCache.get(value: self.musicID!) else {
-            self.setupDefaultView()
-            return
-        }
-        guard let musicDetails = cacheEntry.getObjectData() as! MusicDetails? else {
-            self.setupDefaultView()
-            return
-        }
-        if let url = URL(string: APPLEMUSIC_URL_PREFIX + musicDetails.AppleMusicID) {
-            UIApplication.shared.open(url, options: [:])
-        }
+        
+        EndpointRequestor.playMusicTrack(withEndpoint: .PLAY_APPLE_MUSIC_TRACK,
+                                         usingMusicID: self.musicID!)
     }
     
     @IBAction func spotifyMusicButtonAction(_ sender: Any) {
-        guard let cacheEntry = MusicDetailsController.musicDetailsCache.get(value: self.musicID!) else {
-            self.setupDefaultView()
-            return
-        }
-        guard let musicDetails = cacheEntry.getObjectData() as! MusicDetails? else {
-            self.setupDefaultView()
-            return
-        }
-        if let url = URL(string: SPOTIFY_URL_PREFIX + musicDetails.spotifyTrackID) {
-            UIApplication.shared.open(url, options: [:])
-        }
+        EndpointRequestor.playMusicTrack(withEndpoint: .PLAY_SPOTIFY_TRACK,
+                                         usingMusicID: self.musicID!)
     }
     
     override func viewDidLoad() {
