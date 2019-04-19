@@ -1,5 +1,5 @@
 //
-//  AvailableMoviesController.swift
+//  AvailableMusicController.swift
 //  MusicDetailsBrowser
 //
 //  Created by Matthew Certain on 4/15/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AvailableMoviesController: UITableViewController {
+class AvailableMusicController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,9 +20,9 @@ class AvailableMoviesController: UITableViewController {
         
         let reachability = note.object as! Reachability
         if(reachability.connection != .none) {
-            // Once the network is confirmed to be available, then fetch the movie list data
+            // Once the network is confirmed to be available, then fetch the music list data
             NetworkAvailability.networkAvailable = true
-            self.fetchMovieData()
+            self.fetchMusicData()
         }
         else {
             // When the network is disconnected, then show an alert to the user
@@ -31,9 +31,9 @@ class AvailableMoviesController: UITableViewController {
         }
     }
     
-    func fetchMovieData() {
-        // When the Movie Data Manager is empty, then query the movie list from the cloud
-        if(MovieDataManager.GetInstance()?.getMovieCount() == 0) {
+    func fetchMusicData() {
+        // When the Music Data Manager is empty, then query the music list from the cloud
+        if(MusicDataManager.GetInstance()?.getMusicCount() == 0) {
             let remoteLocation = URL(string: MUSIC_LIST_URL)
             let task = URLSession.shared.dataTask(with: remoteLocation!) {(data, response, error) in
                 guard error == nil else {
@@ -46,13 +46,13 @@ class AvailableMoviesController: UITableViewController {
                     return
                 }
                 
-                guard (MovieDataManager.GetInstance()?.storeMovieData(receivedJSONData: content))! else {
+                guard (MusicDataManager.GetInstance()?.storeMusicData(receivedJSONData: content))! else {
                     print("JSON data parsing failed.")
                     return
                 }
                 
                 // When the data is successfully retrieved and stored, then reload the table data
-                // from the Movie Data Manager's cache
+                // from the Music Data Manager's cache
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
@@ -61,8 +61,8 @@ class AvailableMoviesController: UITableViewController {
         }
     }
     
-    func fetchMovieCoverImage(forCell: MovieListCell, atIndex: Int, withID: String) {
-        let remoteLocation = MovieDataManager.GetInstance()?.getMovieImageURL(atIndex: atIndex)
+    func fetchMusicCoverImage(forCell: MusicListCell, atIndex: Int, withID: String) {
+        let remoteLocation = MusicDataManager.GetInstance()?.getCoverImageThumbURL(atIndex: atIndex)
         let task = URLSession.shared.dataTask(with: remoteLocation!) {(data, response, error) in
             guard error == nil else {
                 print("URL Request returned with error.")
@@ -74,56 +74,57 @@ class AvailableMoviesController: UITableViewController {
                 return
             }
             
-            // Store the Movie Cover Image in the Movie Data Manager's cache
-            MovieDataManager.GetInstance()?.setMovieCoverImage(atIndex: atIndex, withData: content)
+            // Store the Music Cover Image in the Music Data Manager's cache
+            MusicDataManager.GetInstance()?.setMusicCoverImage(atIndex: atIndex, withData: content)
             
-            // Then update only the cell that needs to display the movie cover image
+            // Then update only the cell that needs to display the music cover image
             DispatchQueue.main.async {
-                forCell.movieCoverImage.image = UIImage(data: content)
+                forCell.musicCoverImage.image = UIImage(data: content)
             }
         }
         task.resume()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (MovieDataManager.GetInstance()?.getMovieCount())!
+        return (MusicDataManager.GetInstance()?.getMusicCount())!
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return MOVIE_LIST_CELL_HEIGHT
+        return MUSIC_LIST_CELL_HEIGHT
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell: MovieListCell
+        var cell: MusicListCell
         let idx:Int = indexPath.row
-        let pMovieDataManager = MovieDataManager.GetInstance()
+        let pMusicDataManager = MusicDataManager.GetInstance()
         
         // Load the default cell layout and populate it
-        cell = Bundle.main.loadNibNamed("MovieListCell", owner: self, options: nil)?.first as! MovieListCell
-        cell.movieTitle.text = pMovieDataManager?.getMovieTitle(atIndex: idx)
+        cell = Bundle.main.loadNibNamed("MusicListCell", owner: self, options: nil)?.first as! MusicListCell
+        cell.songTitle.text = pMusicDataManager?.getSongTitle(atIndex: idx)
+        cell.albumTitle.text = pMusicDataManager?.getAlbumTitle(atIndex: idx)
         
-        // If the movie cover image hasn't be stored in cache yet, then fetch and store it
-        let coverImage = pMovieDataManager?.getMovieCoverImage(atIndex: idx)
+        // If the music cover image hasn't be stored in cache yet, then fetch and store it
+        let coverImage = pMusicDataManager?.getMusicCoverImage(atIndex: idx)
         if(coverImage == nil) {
-            self.fetchMovieCoverImage(forCell: cell,
+            self.fetchMusicCoverImage(forCell: cell,
                                       atIndex: idx,
-                                      withID: (pMovieDataManager?.getMovieID(atIndex: idx))!)
+                                      withID: (pMusicDataManager?.getMusicID(atIndex: idx))!)
         }
         else {
-            cell.movieCoverImage.image = coverImage
+            cell.musicCoverImage.image = coverImage
         }
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // When a table cell is touched, then load and open movie details view for movie selected
+        // When a table cell is touched, then load and open music details view for music selected
         let mainStoryBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        if let pMovieDetailsController = mainStoryBoard.instantiateViewController(withIdentifier: "MovieDetailsController") as? MovieDetailsController {
+        if let pMusicDetailsController = mainStoryBoard.instantiateViewController(withIdentifier: "MusicDetailsController") as? MusicDetailsController {
             let idx:Int = indexPath.row
-            let pMovieDataManager = MovieDataManager.GetInstance()
-            pMovieDetailsController.movieID = pMovieDataManager?.getMovieID(atIndex: idx)
-            navigationController?.pushViewController(pMovieDetailsController, animated: true)
+            let pMusicDataManager = MusicDataManager.GetInstance()
+            pMusicDetailsController.musicID = pMusicDataManager?.getMusicID(atIndex: idx)
+            navigationController?.pushViewController(pMusicDetailsController, animated: true)
         }
         else {
             print("Could not load the Chat Message Controller view controller")

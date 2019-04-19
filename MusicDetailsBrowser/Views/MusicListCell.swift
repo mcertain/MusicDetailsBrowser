@@ -1,5 +1,5 @@
 //
-//  MovieListCell.swift
+//  MusicListCell.swift
 //  MusicDetailsBrowser
 //
 //  Created by Matthew Certain on 4/15/19.
@@ -9,35 +9,42 @@
 import Foundation
 import UIKit
 
-let MOVIE_LIST_CELL_HEIGHT: CGFloat = 90
+let MUSIC_LIST_CELL_HEIGHT: CGFloat = 90
 
-class MovieListCell : UITableViewCell {
-    @IBOutlet var movieCoverImage: UIImageView!
-    @IBOutlet var movieTitle: UILabel!
+class MusicListCell : UITableViewCell {
+    @IBOutlet var musicCoverImage: UIImageView!
+    @IBOutlet var songTitle: UILabel!
+    @IBOutlet var albumTitle: UILabel!
     
     let coverImageNew: UIImageView = {
         return UIImageView()
     }()
     
-    let movieTitleNew: UILabel = {
+    let songTitleNew: UILabel = {
+        return UILabel()
+    }()
+    
+    let albumTitleNew: UILabel = {
         return UILabel()
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        movieCoverImage = coverImageNew
-        movieTitle = movieTitleNew
+        musicCoverImage = coverImageNew
+        songTitle = songTitleNew
+        albumTitle = albumTitleNew
         
-        self.addSubview(movieCoverImage)
-        self.addSubview(movieTitle)
+        self.addSubview(musicCoverImage)
+        self.addSubview(songTitle)
+        self.addSubview(albumTitle)
         
-        movieCoverImage.setAnchors(top: self.contentView.topAnchor, topPad: 5,
+        musicCoverImage.setAnchors(top: self.contentView.topAnchor, topPad: 5,
                                   bottom: self.contentView.bottomAnchor, bottomPad: 5,
                                   left: self.contentView.leftAnchor, leftPad: 5)
         
-        movieTitle.setAnchors(top: self.contentView.topAnchor, topPad: 25,
-                             left: self.contentView.leftAnchor, leftPad: 65,
+        songTitle.setAnchors(top: self.contentView.topAnchor, topPad: 25,
+                             left: self.contentView.leftAnchor, leftPad: 90,
                              right: self.contentView.rightAnchor, rightPad: 5)
     }
     

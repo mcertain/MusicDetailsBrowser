@@ -8,16 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		8F25BC852265159900BA2438 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F25BC842265159900BA2438 /* AppDelegate.swift */; };
-		8F25BC872265159900BA2438 /* AvailableMoviesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F25BC862265159900BA2438 /* AvailableMoviesController.swift */; };
+		8F25BC872265159900BA2438 /* AvailableMusicController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F25BC862265159900BA2438 /* AvailableMusicController.swift */; };
 		8F25BC8A2265159900BA2438 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F25BC882265159900BA2438 /* Main.storyboard */; };
 		8F25BC8D2265159900BA2438 /* MusicDetailsBrowser.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8F25BC8B2265159900BA2438 /* MusicDetailsBrowser.xcdatamodeld */; };
 		8F25BC8F2265159B00BA2438 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F25BC8E2265159B00BA2438 /* Assets.xcassets */; };
 		8F25BC922265159B00BA2438 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F25BC902265159B00BA2438 /* LaunchScreen.storyboard */; };
 		8F25BC9D2265184400BA2438 /* LRUCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F25BC9C2265184400BA2438 /* LRUCache.swift */; };
-		8F25BC9F22656FE600BA2438 /* MovieDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F25BC9E22656FE600BA2438 /* MovieDataManager.swift */; };
-		8F25BCA222659C7800BA2438 /* MovieListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F25BCA022659C7800BA2438 /* MovieListCell.swift */; };
-		8F25BCA322659C7800BA2438 /* MovieListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F25BCA122659C7800BA2438 /* MovieListCell.xib */; };
-		8F25BCA52265CC1F00BA2438 /* MovieDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F25BCA42265CC1F00BA2438 /* MovieDetailsController.swift */; };
+		8F25BC9F22656FE600BA2438 /* MusicDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F25BC9E22656FE600BA2438 /* MusicDataManager.swift */; };
+		8F25BCA222659C7800BA2438 /* MusicListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F25BCA022659C7800BA2438 /* MusicListCell.swift */; };
+		8F25BCA322659C7800BA2438 /* MusicListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F25BCA122659C7800BA2438 /* MusicListCell.xib */; };
+		8F25BCA52265CC1F00BA2438 /* MusicDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F25BCA42265CC1F00BA2438 /* MusicDetailsController.swift */; };
 		8F25BCA82266596500BA2438 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F25BCA72266596500BA2438 /* Reachability.swift */; };
 		8F25BCAA2266670900BA2438 /* NetworkAvailability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F25BCA92266670900BA2438 /* NetworkAvailability.swift */; };
 		8F25BCAC22666E4000BA2438 /* UIViewUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F25BCAB22666E4000BA2438 /* UIViewUtilities.swift */; };
@@ -37,17 +37,17 @@
 /* Begin PBXFileReference section */
 		8F25BC812265159900BA2438 /* MusicDetailsBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicDetailsBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F25BC842265159900BA2438 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8F25BC862265159900BA2438 /* AvailableMoviesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableMoviesController.swift; sourceTree = "<group>"; };
+		8F25BC862265159900BA2438 /* AvailableMusicController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableMusicController.swift; sourceTree = "<group>"; };
 		8F25BC892265159900BA2438 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8F25BC8C2265159900BA2438 /* TubiCodingChallenge.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TubiCodingChallenge.xcdatamodel; sourceTree = "<group>"; };
 		8F25BC8E2265159B00BA2438 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8F25BC912265159B00BA2438 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8F25BC932265159B00BA2438 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F25BC9C2265184400BA2438 /* LRUCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LRUCache.swift; sourceTree = "<group>"; };
-		8F25BC9E22656FE600BA2438 /* MovieDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDataManager.swift; sourceTree = "<group>"; };
-		8F25BCA022659C7800BA2438 /* MovieListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieListCell.swift; sourceTree = "<group>"; };
-		8F25BCA122659C7800BA2438 /* MovieListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MovieListCell.xib; sourceTree = "<group>"; };
-		8F25BCA42265CC1F00BA2438 /* MovieDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsController.swift; sourceTree = "<group>"; };
+		8F25BC9E22656FE600BA2438 /* MusicDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicDataManager.swift; sourceTree = "<group>"; };
+		8F25BCA022659C7800BA2438 /* MusicListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicListCell.swift; sourceTree = "<group>"; };
+		8F25BCA122659C7800BA2438 /* MusicListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MusicListCell.xib; sourceTree = "<group>"; };
+		8F25BCA42265CC1F00BA2438 /* MusicDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicDetailsController.swift; sourceTree = "<group>"; };
 		8F25BCA72266596500BA2438 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		8F25BCA92266670900BA2438 /* NetworkAvailability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAvailability.swift; sourceTree = "<group>"; };
 		8F25BCAB22666E4000BA2438 /* UIViewUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewUtilities.swift; sourceTree = "<group>"; };
@@ -109,7 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				8F25BC9C2265184400BA2438 /* LRUCache.swift */,
-				8F25BC9E22656FE600BA2438 /* MovieDataManager.swift */,
+				8F25BC9E22656FE600BA2438 /* MusicDataManager.swift */,
 				8F25BC8B2265159900BA2438 /* MusicDetailsBrowser.xcdatamodeld */,
 			);
 			path = Model;
@@ -118,8 +118,8 @@
 		8F25BC9A226515E400BA2438 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				8F25BCA022659C7800BA2438 /* MovieListCell.swift */,
-				8F25BCA122659C7800BA2438 /* MovieListCell.xib */,
+				8F25BCA022659C7800BA2438 /* MusicListCell.swift */,
+				8F25BCA122659C7800BA2438 /* MusicListCell.xib */,
 				8F25BC902265159B00BA2438 /* LaunchScreen.storyboard */,
 				8F25BC882265159900BA2438 /* Main.storyboard */,
 				8F25BC8E2265159B00BA2438 /* Assets.xcassets */,
@@ -130,8 +130,8 @@
 		8F25BC9B226515EF00BA2438 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				8F25BC862265159900BA2438 /* AvailableMoviesController.swift */,
-				8F25BCA42265CC1F00BA2438 /* MovieDetailsController.swift */,
+				8F25BC862265159900BA2438 /* AvailableMusicController.swift */,
+				8F25BCA42265CC1F00BA2438 /* MusicDetailsController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -238,7 +238,7 @@
 			files = (
 				8F25BC922265159B00BA2438 /* LaunchScreen.storyboard in Resources */,
 				8F25BC8F2265159B00BA2438 /* Assets.xcassets in Resources */,
-				8F25BCA322659C7800BA2438 /* MovieListCell.xib in Resources */,
+				8F25BCA322659C7800BA2438 /* MusicListCell.xib in Resources */,
 				8F25BC8A2265159900BA2438 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -258,14 +258,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F25BC9D2265184400BA2438 /* LRUCache.swift in Sources */,
-				8F25BC9F22656FE600BA2438 /* MovieDataManager.swift in Sources */,
-				8F25BCA222659C7800BA2438 /* MovieListCell.swift in Sources */,
-				8F25BC872265159900BA2438 /* AvailableMoviesController.swift in Sources */,
+				8F25BC9F22656FE600BA2438 /* MusicDataManager.swift in Sources */,
+				8F25BCA222659C7800BA2438 /* MusicListCell.swift in Sources */,
+				8F25BC872265159900BA2438 /* AvailableMusicController.swift in Sources */,
 				8F25BC852265159900BA2438 /* AppDelegate.swift in Sources */,
 				8F25BCAA2266670900BA2438 /* NetworkAvailability.swift in Sources */,
 				8F25BC8D2265159900BA2438 /* MusicDetailsBrowser.xcdatamodeld in Sources */,
 				8F25BCA82266596500BA2438 /* Reachability.swift in Sources */,
-				8F25BCA52265CC1F00BA2438 /* MovieDetailsController.swift in Sources */,
+				8F25BCA52265CC1F00BA2438 /* MusicDetailsController.swift in Sources */,
 				8F25BCAC22666E4000BA2438 /* UIViewUtilities.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
