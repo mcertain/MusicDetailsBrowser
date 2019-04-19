@@ -116,28 +116,9 @@ class MusicDetailsController : UIViewController, UINavigationControllerDelegate 
     }
     
     func requestMusicDetails() {
-        let pMusicDataManager = MusicDataManager.GetInstance()
-        let remoteLocation = URL(string: MUSIC_DETAILS_URL + "/" + musicID!)
-        
-        // Just incase it takes a while to get a response, busy the view so the user knows something
-        // is happening
-        let busyViewOverlay = self.busyTheViewWithIndicator(currentUIViewController: self)
-        let task = URLSession.shared.dataTask(with: remoteLocation!) {(data, response, error) in
-            // Once the response comes back, then the view can be unbusied and updated
-            self.unbusyTheViewWithIndicator(busyView: busyViewOverlay!)
-            
-            // For issues, dispatch the default view indicating the information is unavailable
-            guard error == nil else {
-                print("URL Request returned with error.")
-                self.dispatchViewUpdate()
-                return
-            }
-            guard let content = data else {
-                print("There was no data at the requested URL.")
-                self.dispatchViewUpdate()
-                return
-            }
-            guard let musicDetails = pMusicDataManager?.decodeMusicDetails(receivedJSONData: content) else {
+        let successHandler = { (receivedData: Data?) -> Void in
+            let pMusicDataManager = MusicDataManager.GetInstance()
+            guard let musicDetails = pMusicDataManager?.decodeMusicDetails(receivedJSONData: receivedData) else {
                 print("JSON data parsing failed.")
                 self.dispatchViewUpdate()
                 return
@@ -150,7 +131,17 @@ class MusicDetailsController : UIViewController, UINavigationControllerDelegate 
             // And then update the view with what was just stored in cache
             self.dispatchViewUpdate()
         }
-        task.resume()
+        
+        let errorHandler = { () -> Void in
+            self.dispatchViewUpdate()
+        }
+        
+        EndpointRequestor.requestEndpointData(endpoint: .MUSIC_DETAILS,
+                                              withUIViewController: self,
+                                              errorHandler: errorHandler,
+                                              successHandler: successHandler,
+                                              busyTheView: true,
+                                              withArgument: musicID as AnyObject?)
     }
     
     func fetchMusicDetails() {

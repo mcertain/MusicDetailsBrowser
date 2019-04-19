@@ -22,6 +22,7 @@
 		8F25BCAA2266670900BA2438 /* NetworkAvailability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F25BCA92266670900BA2438 /* NetworkAvailability.swift */; };
 		8F25BCAC22666E4000BA2438 /* UIViewUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F25BCAB22666E4000BA2438 /* UIViewUtilities.swift */; };
 		8F25BCB422669DD200BA2438 /* MusicDetailsBrowserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F25BCB322669DD200BA2438 /* MusicDetailsBrowserTests.swift */; };
+		8FE79F8222695CDE006468A9 /* EndpointRequestor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE79F8122695CDE006468A9 /* EndpointRequestor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		8F25BCB122669DD200BA2438 /* MusicDetailsBrowserTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MusicDetailsBrowserTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F25BCB322669DD200BA2438 /* MusicDetailsBrowserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicDetailsBrowserTests.swift; sourceTree = "<group>"; };
 		8F25BCB522669DD200BA2438 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8FE79F8122695CDE006468A9 /* EndpointRequestor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointRequestor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +144,7 @@
 				8F25BCAB22666E4000BA2438 /* UIViewUtilities.swift */,
 				8F25BCA92266670900BA2438 /* NetworkAvailability.swift */,
 				8F25BCA72266596500BA2438 /* Reachability.swift */,
+				8FE79F8122695CDE006468A9 /* EndpointRequestor.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 				8F25BC9F22656FE600BA2438 /* MusicDataManager.swift in Sources */,
 				8F25BCA222659C7800BA2438 /* MusicListCell.swift in Sources */,
 				8F25BC872265159900BA2438 /* AvailableMusicController.swift in Sources */,
+				8FE79F8222695CDE006468A9 /* EndpointRequestor.swift in Sources */,
 				8F25BC852265159900BA2438 /* AppDelegate.swift in Sources */,
 				8F25BCAA2266670900BA2438 /* NetworkAvailability.swift in Sources */,
 				8F25BC8D2265159900BA2438 /* MusicDetailsBrowser.xcdatamodeld in Sources */,

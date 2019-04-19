@@ -26,7 +26,7 @@ class SpinnerViewController: UIViewController {
         spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
     
-    static func createSpinnerView(currentUIViewController: UIViewController?) ->SpinnerViewController?  {
+    static func createSpinnerView(currentUIViewController: UIViewController?) ->UIViewController?  {
         let child = SpinnerViewController()
         
         DispatchQueue.main.async {
@@ -37,11 +37,11 @@ class SpinnerViewController: UIViewController {
             child.didMove(toParent: currentUIViewController)
         }
         
-        return child
+        return child as UIViewController
     }
     
-    static func stopSpinnerView(busyView: SpinnerViewController)  {
-        let child = busyView
+    static func stopSpinnerView(busyView: UIViewController?)  {
+        let child = busyView as! SpinnerViewController
         DispatchQueue.main.async {
             // Remove the spinner view controller
             child.willMove(toParent: nil)
@@ -54,11 +54,11 @@ class SpinnerViewController: UIViewController {
 extension UIViewController {
     
     // Extensions to busy/unbusy any UIViewController
-    func busyTheViewWithIndicator(currentUIViewController: UIViewController?) ->SpinnerViewController? {
+    func busyTheViewWithIndicator(currentUIViewController: UIViewController?) ->UIViewController? {
         return SpinnerViewController.createSpinnerView(currentUIViewController: currentUIViewController)
     }
     
-    func unbusyTheViewWithIndicator(busyView: SpinnerViewController) {
+    func unbusyTheViewWithIndicator(busyView: UIViewController?) {
         SpinnerViewController.stopSpinnerView(busyView: busyView)
     }
 }

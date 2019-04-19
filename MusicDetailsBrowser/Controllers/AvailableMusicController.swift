@@ -32,44 +32,33 @@ class AvailableMusicController: UITableViewController {
     }
     
     func fetchMusicData() {
-        // When the Music Data Manager is empty, then query the music list from the cloud
-        if(MusicDataManager.GetInstance()?.getMusicCount() == 0) {
-            let remoteLocation = URL(string: MUSIC_LIST_URL)
-            let task = URLSession.shared.dataTask(with: remoteLocation!) {(data, response, error) in
-                guard error == nil else {
-                    print("URL Request returned with error.")
-                    return
-                }
-                
-                guard let content = data else {
-                    print("There was no data at the requested URL.")
-                    return
-                }
-                
-                guard (MusicDataManager.GetInstance()?.storeMusicData(receivedJSONData: content))! else {
-                    print("JSON data parsing failed.")
-                    return
-                }
-                
-                // When the data is successfully retrieved and stored, then reload the table data
-                // from the Music Data Manager's cache
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
+        let pMusicDataManager = MusicDataManager.GetInstance()
+        
+        let successHandler = { (receivedData: Data?) -> Void in
+            guard (pMusicDataManager?.storeMusicData(receivedJSONData: receivedData))! else {
+                print("JSON data parsing failed.")
+                return
             }
-            task.resume()
+            
+            // When the data is successfully retrieved and stored, then reload the table data
+            // from the Music Data Manager's cache
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+        
+        if(pMusicDataManager?.getMusicCount() == 0) {
+            EndpointRequestor.requestEndpointData(endpoint: .MUSIC_LISTING,
+                                                  withUIViewController: self,
+                                                  errorHandler: nil,
+                                                  successHandler: successHandler,
+                                                  busyTheView: true)
         }
     }
     
     func fetchMusicCoverImage(forCell: MusicListCell, atIndex: Int, withID: String) {
-        let remoteLocation = MusicDataManager.GetInstance()?.getCoverImageThumbURL(atIndex: atIndex)
-        let task = URLSession.shared.dataTask(with: remoteLocation!) {(data, response, error) in
-            guard error == nil else {
-                print("URL Request returned with error.")
-                return
-            }
-            
-            guard let content = data else {
+        let successHandler = { (receivedData: Data?) -> Void in
+            guard let content = receivedData else {
                 print("There was no data at the requested URL.")
                 return
             }
@@ -82,7 +71,13 @@ class AvailableMusicController: UITableViewController {
                 forCell.musicCoverImage.image = UIImage(data: content)
             }
         }
-        task.resume()
+        
+        EndpointRequestor.requestEndpointData(endpoint: .COVER_IMAGE_THUMBNAIL,
+                                              withUIViewController: self,
+                                              errorHandler: nil,
+                                              successHandler: successHandler,
+                                              busyTheView: false,
+                                              withArgument: atIndex as AnyObject)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
