@@ -35,9 +35,19 @@ class MusicDetailsController : UIViewController, UINavigationControllerDelegate 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchMusicDetails()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         // Register network change events and attempt to fetch the music details when the view loads
         NetworkAvailability.setupReachability(controller: self, selector: #selector(self.reachabilityChanged(note:)) )
-        fetchMusicDetails()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        // When not visible, then we don't need to get this notification
+        super.viewWillDisappear(animated)
+        NetworkAvailability.removeReachability(controller: self, selector: #selector(self.reachabilityChanged(note:)) )
     }
     
     @objc func reachabilityChanged(note: Notification) {
@@ -45,7 +55,7 @@ class MusicDetailsController : UIViewController, UINavigationControllerDelegate 
         let reachability = note.object as! Reachability
         
         if(reachability.connection != .none) {
-            // When the network returns, try to fetch the music details again
+            // When the network returns, try to fetch (or refresh the current) music details
             self.fetchMusicDetailsAfterNetworkReturned()
         }
         else {
@@ -116,9 +126,11 @@ class MusicDetailsController : UIViewController, UINavigationControllerDelegate 
         }
         
         let errorHandler = { () -> Void in
+            // Otherwise, upon error just display information from Cache or Unavailability of data
             self.dispatchViewUpdate()
         }
         
+        // Request the Music Details from the Cloud Endpoint
         EndpointRequestor.requestEndpointData(endpoint: .MUSIC_DETAILS,
                                               withUIViewController: self,
                                               errorHandler: errorHandler,

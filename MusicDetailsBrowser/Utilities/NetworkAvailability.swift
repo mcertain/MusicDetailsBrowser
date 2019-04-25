@@ -29,6 +29,10 @@ class NetworkAvailability {
         }
     }
     
+    static func removeReachability(controller: UIViewController?, selector: Selector) {
+        NotificationCenter.default.removeObserver(controller, name: .reachabilityChanged, object: NetworkAvailability.reachability)
+    }
+    
     static func networkAvailable() -> Bool {
         let available = NetworkAvailability.reachability?.connection
         if(available != Reachability.Connection.none) {

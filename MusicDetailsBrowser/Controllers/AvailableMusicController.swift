@@ -10,10 +10,16 @@ import UIKit
 
 class AvailableMusicController: UITableViewController {
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Register for network change events
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // Register network change events and attempt to fetch the music details when the view loads
         NetworkAvailability.setupReachability(controller: self, selector: #selector(self.reachabilityChanged(note:)) )
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        // When not visible, then we don't need to get this notification
+        super.viewWillDisappear(animated)
+        NetworkAvailability.removeReachability(controller: self, selector: #selector(self.reachabilityChanged(note:)) )
     }
     
     @objc func reachabilityChanged(note: Notification) {
