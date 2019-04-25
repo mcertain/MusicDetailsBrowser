@@ -84,10 +84,15 @@ class LRUCacheTests: XCTestCase {
         let stringObject: String? = "ABCDEF"
         let dictionaryObject: [String:Int]? = ["A":1, "B":2, "C":3]
         let urlObject: URL? = URL(string: "https://www.google.com/")
-        let musicDetailsObject: MusicDetails? = MusicDetails(title: "Fred: The Music",
-                                                             image: "http://images.adrise.tv/lKsDShnaRNa1karinuKUMk0woKc=/214x306/smart/img.adrise.tv/90115436-a94c-4536-8ff8-906a4a193fd8.jpg",
-                                                             id: "321861",
-                                                             index: 26)
+        let musicDetailsObject: MusicDetails? = MusicDetails(index: 0,
+                                                             id: "302437",
+                                                             albumID: "11609072129",
+                                                             artistName: "Pitbull",
+                                                             albumTitle: "Global Warming",
+                                                             songTitle: "Don't Stop The Party",
+                                                             image: "5fe83db0-745f-4cb1-b043-d22b2d682c87",
+                                                             length: "", spotifyTrackID: "2tdseeP2TePM98X6Jcwf1C",
+                                                             AppleMusicID: "737053237?i=737053271")
         
         // Verify attaching string object references
         newCacheEntry = "123456"

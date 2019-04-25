@@ -440,7 +440,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = mcertain.TubiCodingChallenge;
+				PRODUCT_BUNDLE_IDENTIFIER = mcertain.MusicDetailsBrowser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -459,7 +459,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = mcertain.TubiCodingChallenge;
+				PRODUCT_BUNDLE_IDENTIFIER = mcertain.MusicDetailsBrowser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -472,13 +472,13 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QES95469SW;
-				INFOPLIST_FILE = TubiCodingChallengeTests/Info.plist;
+				INFOPLIST_FILE = MusicDetailsBrowserTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = mcertain.TubiCodingChallengeTests;
+				PRODUCT_BUNDLE_IDENTIFIER = mcertain.MusicDetailsBrowserTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -492,13 +492,13 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QES95469SW;
-				INFOPLIST_FILE = TubiCodingChallengeTests/Info.plist;
+				INFOPLIST_FILE = MusicDetailsBrowserTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = mcertain.TubiCodingChallengeTests;
+				PRODUCT_BUNDLE_IDENTIFIER = mcertain.MusicDetailsBrowserTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

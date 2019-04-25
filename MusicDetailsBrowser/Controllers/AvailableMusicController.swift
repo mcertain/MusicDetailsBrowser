@@ -38,20 +38,20 @@ class AvailableMusicController: UITableViewController {
     func fetchMusicData() {
         let pMusicDataManager = MusicDataManager.GetInstance()
         
-        let successHandler = { (receivedData: Data?) -> Void in
-            guard (pMusicDataManager?.storeMusicData(receivedJSONData: receivedData))! else {
-                print("JSON data parsing failed.")
-                return
-            }
-            
-            // When the data is successfully retrieved and stored, then reload the table data
-            // from the Music Data Manager's cache
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
-        
         if(pMusicDataManager?.getMusicCount() == 0) {
+            let successHandler = { (receivedData: Data?) -> Void in
+                guard (pMusicDataManager?.storeMusicData(receivedJSONData: receivedData))! else {
+                    print("JSON data parsing failed.")
+                    return
+                }
+                
+                // When the data is successfully retrieved and stored, then reload the table data
+                // from the Music Data Manager's cache
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+        
             EndpointRequestor.requestEndpointData(endpoint: .MUSIC_LISTING,
                                                   withUIViewController: self,
                                                   errorHandler: nil,
@@ -61,27 +61,36 @@ class AvailableMusicController: UITableViewController {
     }
     
     func fetchMusicCoverImage(forCell: MusicListCell, atIndex: Int, withID: String) {
-        let successHandler = { (receivedData: Data?) -> Void in
-            guard let content = receivedData else {
-                print("There was no data at the requested URL.")
-                return
-            }
-            
-            // Store the Music Cover Image in the Music Data Manager's cache
-            MusicDataManager.GetInstance()?.setMusicCoverImage(atIndex: atIndex, withData: content)
-            
-            // Then update only the cell that needs to display the music cover image
-            DispatchQueue.main.async {
-                forCell.musicCoverImage.image = UIImage(data: content)
-            }
-        }
+        let pMusicDataManager = MusicDataManager.GetInstance()
         
-        EndpointRequestor.requestEndpointData(endpoint: .COVER_IMAGE_THUMBNAIL,
-                                              withUIViewController: self,
-                                              errorHandler: nil,
-                                              successHandler: successHandler,
-                                              busyTheView: false,
-                                              withArgument: atIndex as AnyObject)
+        // If the music cover image hasn't be stored in cache yet, then fetch and store it
+        let coverImage = pMusicDataManager?.getMusicCoverImage(atIndex: atIndex)
+        if(coverImage == nil) {
+            let successHandler = { (receivedData: Data?) -> Void in
+                guard let content = receivedData else {
+                    print("There was no data at the requested URL.")
+                    return
+                }
+                
+                // Store the Music Cover Image in the Music Data Manager's cache
+                MusicDataManager.GetInstance()?.setMusicCoverImage(atIndex: atIndex, withData: content)
+                
+                // Then update only the cell that needs to display the music cover image
+                DispatchQueue.main.async {
+                    forCell.musicCoverImage.image = UIImage(data: content)
+                }
+            }
+            
+            EndpointRequestor.requestEndpointData(endpoint: .COVER_IMAGE_THUMBNAIL,
+                                                  withUIViewController: self,
+                                                  errorHandler: nil,
+                                                  successHandler: successHandler,
+                                                  busyTheView: false,
+                                                  withArgument: atIndex as AnyObject)
+        }
+        else {
+            forCell.musicCoverImage.image = coverImage
+        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -101,18 +110,8 @@ class AvailableMusicController: UITableViewController {
         cell = Bundle.main.loadNibNamed("MusicListCell", owner: self, options: nil)?.first as! MusicListCell
         cell.songTitle.text = pMusicDataManager?.getSongTitle(atIndex: idx)
         cell.albumTitle.text = pMusicDataManager?.getAlbumTitle(atIndex: idx)
-        
-        // If the music cover image hasn't be stored in cache yet, then fetch and store it
-        let coverImage = pMusicDataManager?.getMusicCoverImage(atIndex: idx)
-        if(coverImage == nil) {
-            self.fetchMusicCoverImage(forCell: cell,
-                                      atIndex: idx,
-                                      withID: (pMusicDataManager?.getMusicID(atIndex: idx))!)
-        }
-        else {
-            cell.musicCoverImage.image = coverImage
-        }
-        
+        self.fetchMusicCoverImage(forCell: cell, atIndex: idx,
+                                  withID: (pMusicDataManager?.getMusicID(atIndex: idx))!)
         return cell
     }
     
