@@ -21,12 +21,10 @@ class AvailableMusicController: UITableViewController {
         let reachability = note.object as! Reachability
         if(reachability.connection != .none) {
             // Once the network is confirmed to be available, then fetch the music list data
-            NetworkAvailability.networkAvailable = true
             self.fetchMusicData()
         }
         else {
             // When the network is disconnected, then show an alert to the user
-            NetworkAvailability.networkAvailable = false
             NetworkAvailability.displayNetworkDisconnectedAlert(currentUIViewController: self)
         }
     }

@@ -10,5 +10,13 @@
             </PersistentString>
          </PersistentStrings>
       </ContextState>
+      <ContextState
+         contextName = "static NetworkAvailability.networkAvailable():NetworkAvailability.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "NetworkAvailability.reachability">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
    </ContextStates>
 </VariablesViewState>

@@ -11,8 +11,7 @@ import UIKit
 
 // Utility for detecting network availability and alerting user, can be used by any controller
 class NetworkAvailability {
-    static let reachability: Reachability? = Reachability()!
-    static var networkAvailable: Bool = true
+    static fileprivate let reachability: Reachability? = Reachability()!
     
     static func displayNetworkDisconnectedAlert(currentUIViewController: UIViewController?) {
         let alert = UIAlertController(title: "Network Connection", message: "Your network connection is unavailable. Please make sure that you are connected to a Wi-Fi or Cellular Network.", preferredStyle: .alert)
@@ -27,6 +26,18 @@ class NetworkAvailability {
             try NetworkAvailability.reachability?.startNotifier()
         }catch{
             print("could not start reachability notifier")
+        }
+    }
+    
+    static func networkAvailable() -> Bool {
+        let available = NetworkAvailability.reachability?.connection
+        if(available != Reachability.Connection.none) {
+            // When the network is available
+            return true
+        }
+        else {
+            // When the network is NOT available
+            return false
         }
     }
 }

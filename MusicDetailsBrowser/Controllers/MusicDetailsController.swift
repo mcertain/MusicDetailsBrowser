@@ -24,7 +24,6 @@ class MusicDetailsController : UIViewController, UINavigationControllerDelegate 
     }
     
     @IBAction func appleMusicButtonAction(_ sender: Any) {
-        
         EndpointRequestor.playMusicTrack(withEndpoint: .PLAY_APPLE_MUSIC_TRACK,
                                          usingMusicID: self.musicID!)
     }
@@ -47,12 +46,10 @@ class MusicDetailsController : UIViewController, UINavigationControllerDelegate 
         
         if(reachability.connection != .none) {
             // When the network returns, try to fetch the music details again
-            NetworkAvailability.networkAvailable = true
             self.fetchMusicDetailsAfterNetworkReturned()
         }
         else {
             // When the network is disconnected, then show an alert to the user
-            NetworkAvailability.networkAvailable = false
             NetworkAvailability.displayNetworkDisconnectedAlert(currentUIViewController: self)
         }
     }
@@ -135,7 +132,7 @@ class MusicDetailsController : UIViewController, UINavigationControllerDelegate 
         if(musicID != nil && musicID != "") {
             // And the music details are not in cache and the network is available
             if( MusicDetailsController.musicDetailsCache.isValid(value: musicID!) == false &&
-                NetworkAvailability.networkAvailable == true) {
+                NetworkAvailability.networkAvailable() == true) {
                 // Then request the music details from the cloud
                 self.requestMusicDetails()
             }
